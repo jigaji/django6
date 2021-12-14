@@ -32,9 +32,8 @@ class StockSerializer(serializers.ModelSerializer):
         # создаем склад по его параметрам
         stock = super().create(validated_data)
 
-        for position in positions:
-            pos_obj = StockProduct(stock=stock, **position)
-            StockProduct.objects.bulk_create(pos_obj)
+        models = [StockProduct(stock=stock, **position) for position in positions]
+        StockProduct.objects.bulk_create(models)
 
         return stock
 
