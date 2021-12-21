@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ###
 # получение продуктов
-GET {{baseUrl}}/products/?search=огурец
+GET {{baseUrl}}/products/
 Content-Type: application/json
 
 ###
@@ -71,13 +71,39 @@ Content-Type: application/json
   ]
 }
 
+###
 
-# удаление скалада
+# создание склада
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
 
-DELETE {{{{baseUrl}}/stocks/1
+{
+  "address": "лучшее место",
+  "positions": [
+    {
+      "product": 1,
+      "quantity": 50,
+      "price": 80
+    },
+    {
+      "product": 4,
+      "quantity": 230,
+      "price": 150
+    }
+  ]
+}
+
+###
+
+# получение складов
+GET {{baseUrl}}/stocks/
 Content-Type: application/json
 
 ###
+
+# удаление склада
+DELETE {{baseUrl}}/stocks/2/
+Content-Type: application/json
 
 ###
 
@@ -88,12 +114,12 @@ Content-Type: application/json
 {
   "positions": [
     {
-      "product": 2,
+      "product": 1,
       "quantity": 100,
       "price": 130.80
     },
     {
-      "product": 3,
+      "product": 2,
       "quantity": 243,
       "price": 145
     }
@@ -103,5 +129,5 @@ Content-Type: application/json
 ###
 
 # поиск складов, где есть определенный продукт
-GET {{baseUrl}}/stocks/?products=2
+GET {{baseUrl}}/stocks/?search=огурец
 Content-Type: application/json
